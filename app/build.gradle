@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTool
+    defaultConfig {
+        applicationId ApplicationId.id
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Dependencies.kotlinStandardLibrary
+
+    implementation Dependencies.appCompat
+    implementation Dependencies.materialDesign
+    implementation Dependencies.coreKtx
+    implementation Dependencies.constraintLayout
+    implementation Dependencies.lifecycleViewModel
+    implementation Dependencies.lifecycleExtensions
+
+    implementation Dependencies.timber
+
+    implementation Dependencies.dagger
+    implementation Dependencies.daggerAndroid
+    implementation Dependencies.daggerAndroidSupport
+    kapt Dependencies.daggerCompiler
+    kapt Dependencies.daggerProcessor
+
+    implementation Dependencies.rxKotlin
+    implementation Dependencies.rxAndroid
+    implementation Dependencies.rxBinding
+}
