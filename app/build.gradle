@@ -47,4 +47,6 @@ dependencies {
     implementation Dependencies.rxKotlin
     implementation Dependencies.rxAndroid
     implementation Dependencies.rxBinding
+
+    implementation Dependencies.glide
 }

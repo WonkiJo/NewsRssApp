@@ -1,16 +1,23 @@
 package com.wonkijo.newsfeed
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.RoundedBitmapDrawable
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_splash.*
 import java.util.concurrent.TimeUnit
 
-class SplashActivity: AppCompatActivity() {
+
+class SplashActivity : AppCompatActivity() {
 
     private var disposable: Disposable? = null
 
@@ -18,7 +25,15 @@ class SplashActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // todo : round masking new icon
+        Glide.with(this)
+            .load(R.drawable.ic_news)
+            .apply(RequestOptions.circleCropTransform())
+            .into(iv_news)
+
+//        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_news)
+//        val roundDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
+//        roundDrawable.isCircular = true
+//        iv_news.setImageDrawable(roundDrawable)
     }
 
     override fun onStart() {
@@ -29,9 +44,12 @@ class SplashActivity: AppCompatActivity() {
             .delay(1300, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onError = {},
+                onError = {
+                    // todo : handle error
+                },
                 onComplete = {
                     Intent(this@SplashActivity, NewsFeedActivity::class.java).run {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(this)
                     }
                 }

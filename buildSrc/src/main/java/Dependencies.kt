@@ -26,7 +26,7 @@ object Versions {
     val constraintLayout = "1.1.3"
     val lifecycle = "2.0.0"
 
-    // todo : glide
+    val glide = "4.8.0"
     // todo : retrofit
     // todo : xml converter
     // todo : jsoup?
@@ -63,6 +63,9 @@ object Dependencies {
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+
+    // Glide
+    val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 
 //    val room = "androidx.room:room-runtime:${Versions.room}"
 //    val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
