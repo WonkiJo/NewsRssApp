@@ -37,14 +37,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_news" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:textSize="20sp"
+        android:textColor="@android:color/tertiary_text_dark"
         android:textStyle="bold"
-        android:text="최신 뉴스를 제공합니다.\n뉴스의 키워드를 알아보세요"
-        android:maxLines="3"
+        android:text="최신 뉴스를 제공합니다.\n뉴스의 키워드를 알아보세요\n뉴스를 클릭하면 원본 뉴스를 볼 수 있습니다."
         android:gravity="left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
