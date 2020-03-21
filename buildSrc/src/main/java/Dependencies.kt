@@ -27,6 +27,10 @@ object Versions {
     val lifecycle = "2.0.0"
 
     val glide = "4.8.0"
+    
+    val retrofit2 = "2.5.0"
+    val okhttp3 = "3.12.0"
+    
     // todo : retrofit
     // todo : xml converter
     // todo : jsoup?
@@ -67,23 +71,30 @@ object Dependencies {
     // Glide
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 
+    // Network
+    val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
+    val okhttpLogger = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
+    val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2}"
+    val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit2}"
+    val converterXml = "com.squareup.retrofit2:converter-simplexml:${Versions.retrofit2}"
+
 //    val room = "androidx.room:room-runtime:${Versions.room}"
 //    val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
 //    // For testing
-//    junit                   : "junit:junit:${versions.junit}",
-//    kotlinTest              : "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}",
-//    mockito                 : "org.mockito:mockito-core:${versions.mockito}",
-//    roomTest                : "androidx.room:room-testing:${versions.room}",
-//    robolectric             : "org.robolectric:robolectric:${versions.robolectric}",
-//    truth                   : "androidx.test.ext:truth:${versions.truth}",
+//    junit                   : "junit:junit:${Versions.junit}",
+//    kotlinTest              : "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}",
+//    mockito                 : "org.mockito:mockito-core:${Versions.mockito}",
+//    roomTest                : "androidx.room:room-testing:${Versions.room}",
+//    robolectric             : "org.robolectric:robolectric:${Versions.robolectric}",
+//    truth                   : "androidx.test.ext:truth:${Versions.truth}",
 //
-//    androidTestCore         : "androidx.test:core:${versions.androidTest}",
-//    androidTestCoreKtx      : "androidx.test:core-ktx:${versions.androidTest}",
-//    androidTestJUnit        : "androidx.test.ext:junit:${versions.androidTest}",
-//    androidTestJUnitKtx     : "androidx.test.ext:junit-ktx:${versions.androidTest}",
-//    androidTestRunner       : "androidx.test:runner:${versions.androidTest}",
-//    androidTestRules        : "androidx.test:rules:${versions.androidTest}",
-//    espressoCore            : "androidx.test.espresso:espresso-core:${versions.espresso}",
-//    espressoIntents         : "androidx.test.espresso:espresso-intents:${versions.espresso}"
+//    androidTestCore         : "androidx.test:core:${Versions.androidTest}",
+//    androidTestCoreKtx      : "androidx.test:core-ktx:${Versions.androidTest}",
+//    androidTestJUnit        : "androidx.test.ext:junit:${Versions.androidTest}",
+//    androidTestJUnitKtx     : "androidx.test.ext:junit-ktx:${Versions.androidTest}",
+//    androidTestRunner       : "androidx.test:runner:${Versions.androidTest}",
+//    androidTestRules        : "androidx.test:rules:${Versions.androidTest}",
+//    espressoCore            : "androidx.test.espresso:espresso-core:${Versions.espresso}",
+//    espressoIntents         : "androidx.test.espresso:espresso-intents:${Versions.espresso}"
 }

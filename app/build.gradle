@@ -49,4 +49,10 @@ dependencies {
     implementation Dependencies.rxBinding
 
     implementation Dependencies.glide
+
+    implementation Dependencies.okhttp
+    implementation Dependencies.okhttpLogger
+    implementation Dependencies.retrofit2
+    implementation Dependencies.adapterRxjava2
+    implementation Dependencies.converterXml
 }
