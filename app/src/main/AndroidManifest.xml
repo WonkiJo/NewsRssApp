@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NewsFeedActivity"/>
+        <activity android:name=".presentation.view.NewsFeedActivity"/>
+        <activity android:name=".presentation.view.NewsFeedDetailActivity"/>
     </application>
 
 </manifest>

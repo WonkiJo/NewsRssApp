@@ -1,6 +1,7 @@
-package com.wonkijo.newsfeed
+package com.wonkijo.newsfeed.di
 
 import android.content.Context
+import com.wonkijo.newsfeed.NewsFeedApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

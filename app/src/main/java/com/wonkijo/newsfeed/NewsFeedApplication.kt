@@ -1,5 +1,6 @@
 package com.wonkijo.newsfeed
 
+import com.wonkijo.newsfeed.di.DaggerNewsFeedComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber

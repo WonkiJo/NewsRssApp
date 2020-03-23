@@ -1,7 +1,7 @@
 package com.wonkijo.newsfeed.di
 
 import com.wonkijo.newsfeed.BuildConfig
-import com.wonkijo.newsfeed.NewsFeedApiService
+import com.wonkijo.newsfeed.data.NewsFeedApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

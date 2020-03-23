@@ -16,31 +16,27 @@ object Versions {
 
     val rxKotlin = "2.3.0"
     val rxAndroid = "2.1.1"
-    val rxBinding = "3.0.0"
 
     val timber = "4.7.1"
 
     val appCompat = "1.0.2"
-    val coreKtx = "1.0.2"
+    val coreKtx = "1.2.0"
     val materialDesign = "1.0.0"
     val constraintLayout = "1.1.3"
-    val lifecycle = "2.0.0"
+    val fragmentKtx = "1.2.3"
+    val lifecycle = "2.2.0"
 
     val glide = "4.8.0"
     
     val retrofit2 = "2.5.0"
     val okhttp3 = "3.12.0"
-    
-    // todo : retrofit
-    // todo : xml converter
-    // todo : jsoup?
+
+    val jsoup = "1.10.3"
+
     // todo : cache with room
     val room = "2.0.0"
     // todo : testing
-
-
-    // todo : coroutine
-    // todo : mvi
+    val junit = "4.12"
 }
 
 object Dependencies {
@@ -58,13 +54,13 @@ object Dependencies {
     // REACTIVEX
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
     val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-    val rxBinding = "com.jakewharton.rxbinding3:rxbinding:${Versions.rxBinding}"
 
     // Android
     val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
     val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
 
@@ -78,12 +74,16 @@ object Dependencies {
     val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofit2}"
     val converterXml = "com.squareup.retrofit2:converter-simplexml:${Versions.retrofit2}"
 
+    // Extract HTML
+    val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
+
+    //
 //    val room = "androidx.room:room-runtime:${Versions.room}"
 //    val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
-//    // For testing
-//    junit                   : "junit:junit:${Versions.junit}",
-//    kotlinTest              : "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}",
+    // Test
+    val junit = "junit:junit:${Versions.junit}"
+    val kotlinJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
 //    mockito                 : "org.mockito:mockito-core:${Versions.mockito}",
 //    roomTest                : "androidx.room:room-testing:${Versions.room}",
 //    robolectric             : "org.robolectric:robolectric:${Versions.robolectric}",
