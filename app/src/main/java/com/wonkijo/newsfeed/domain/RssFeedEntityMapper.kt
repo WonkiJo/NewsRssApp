@@ -13,6 +13,7 @@ class RssFeedEntityMapper @Inject constructor() {
     }
 
     private fun mapFrom(item: RssItem): RssFeedEntity {
+        // todo : cancel thread (job)
         val document = Jsoup.connect(item.link).ignoreHttpErrors(true).get()
 
         val thumbnail = document.select("meta[property=og:image]").firstOrNull()?.run {
@@ -28,8 +29,8 @@ class RssFeedEntityMapper @Inject constructor() {
         return RssFeedEntity(title = item.title, link = item.link, thumbnail = thumbnail, summary = description, keywords = keywords)
     }
 
-    private fun getKeywords(description: String?): List<String> {
-        if (description.isNullOrEmpty()) return listOf()
+    private fun getKeywords(description: String?): Array<String> {
+        if (description.isNullOrEmpty()) return arrayOf()
 
 //        val reg = "[가-힣0-9A-z]+".toRegex()
         val entries = description.split(" ")
@@ -52,6 +53,7 @@ class RssFeedEntityMapper @Inject constructor() {
         })
             .map { it.key }
             .take(3)
+            .toTypedArray()
 
         return keys
     }
