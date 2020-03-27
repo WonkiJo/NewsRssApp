@@ -1,22 +1,25 @@
 package com.wonkijo.newsfeed.presentation.view
 
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.wonkijo.newsfeed.R
 import kotlinx.android.synthetic.main.activity_news_feed_detail.*
+import kotlinx.android.synthetic.main.layout_keywords.*
 
-class NewsFeedDetailActivity: AppCompatActivity() {
+class NewsFeedDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_feed_detail)
-
+sou
         webview.settings.javaScriptEnabled = true
         webview.settings.loadWithOverviewMode = true
         webview.settings.useWideViewPort = true
 
-        webview.webViewClient = object: WebViewClient() {
+        webview.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 if (view != null && url != null) {
                     view.loadUrl(url)
@@ -28,6 +31,21 @@ class NewsFeedDetailActivity: AppCompatActivity() {
 
         intent?.run {
             tv_title.text = getStringExtra("TITLE")
+
+            getStringArrayExtra("KEYWORDS")?.let { keywords ->
+                val tvKeywords: List<AppCompatTextView> =
+                    listOf(tv_keyword_0, tv_keyword_1, tv_keyword_2)
+
+                tvKeywords.forEachIndexed { index, view ->
+                    if (index < keywords.size) {
+                        view.visibility = View.VISIBLE
+                        view.text = keywords[index]
+                    } else {
+                        view.visibility = View.GONE
+                    }
+                }
+            }
+
             webview.loadUrl(getStringExtra("PAGE_URL"))
         }
     }

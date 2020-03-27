@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.wonkijo.newsfeed.R
 import com.wonkijo.newsfeed.presentation.model.RssFeed
 import kotlinx.android.synthetic.main.item_news_feed.view.*
+import kotlinx.android.synthetic.main.layout_keywords.view.*
 
+// todo : diffUtil.
 class NewsFeedAdapter(private val items: MutableList<RssFeed>,
                       private val onClickListener: OnClickFeedListener? = null): RecyclerView.Adapter<NewsFeedAdapter.NewsFeedViewHolder>() {
 
