@@ -3,6 +3,7 @@ package com.wonkijo.rssfeed.presentation.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.wonkijo.rssfeed.R
 import com.wonkijo.rssfeed.presentation.model.RssFeed
@@ -27,14 +28,19 @@ class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
         rv_rss_feed.adapter = adapter
 
         layout_swipe_refresh.setOnRefreshListener {
-            viewModel.getRssFeed()
+            viewModel.refreshFeeds()
+            layout_swipe_refresh.isRefreshing = false
         }
 
         viewModel.rssFeed.observe(this, Observer {
             adapter.setItems(it)
         })
 
-        viewModel.getRssFeed()
+        viewModel.isLoading.observe(this, Observer {
+            view_loading.isVisible = it
+        })
+
+        viewModel.getRssFeeds()
     }
 
     override fun onClickFeed(feed: RssFeed) {

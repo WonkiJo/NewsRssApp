@@ -18,7 +18,7 @@ class RssFeedAdapter(
 ) : RecyclerView.Adapter<RssFeedAdapter.RssFeedViewHolder>() {
 
     fun setItems(items: List<RssFeed>? = null) {
-        if (items.isNullOrEmpty()) return
+        if (items == null) return
         this.items.clear()
         this.items.addAll(items)
         notifyDataSetChanged()

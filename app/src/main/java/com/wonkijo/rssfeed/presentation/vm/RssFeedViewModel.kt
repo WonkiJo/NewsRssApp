@@ -22,18 +22,30 @@ class RssFeedViewModel(private val getRssFeeds: GetRssFeeds,
     val rssFeed: LiveData<List<RssFeed>>
         get() = _rssFeed
 
-    fun getRssFeed() {
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
+    fun refreshFeeds() {
+        _rssFeed.postValue(listOf())
+        getRssFeeds()
+    }
+
+    fun getRssFeeds() {
         getRssFeeds.execute()
             .subscribeOn(Schedulers.io())
             .map { mapper.mapFrom(it) }
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { _isLoading.postValue(true) }
             .subscribeBy(
                 onSuccess = {
                     Timber.d("getRssFeeds: $it")
+                    _isLoading.postValue(false)
                     _rssFeed.postValue(it)
                 },
                 onError = {
                     Timber.e("error getRssFeeds: $it")
+                    _isLoading.postValue(false)
                 }
             )
             .addTo(disposables)
