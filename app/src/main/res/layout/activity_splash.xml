@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_news"
+        android:id="@+id/iv_main"
         android:layout_width="120dp"
         android:layout_height="120dp"
         app:layout_constraintHorizontal_chainStyle="spread"
@@ -22,8 +22,8 @@
         android:layout_height="40dp"
         android:background="@drawable/ic_rss"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintBottom_toBottomOf="@id/iv_news"
-        app:layout_constraintEnd_toStartOf="@id/iv_news"
+        app:layout_constraintBottom_toBottomOf="@id/iv_main"
+        app:layout_constraintEnd_toStartOf="@id/iv_main"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -32,9 +32,9 @@
         android:layout_height="40dp"
         android:background="@drawable/ic_www"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@+id/iv_news"
+        app:layout_constraintStart_toEndOf="@+id/iv_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_news" />
+        app:layout_constraintBottom_toBottomOf="@+id/iv_main" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="0dp"
@@ -49,7 +49,7 @@
         android:gravity="left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_news"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_main"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"

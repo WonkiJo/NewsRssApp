@@ -1,5 +1,5 @@
 object ApplicationId {
-    val id = "com.wonkijo.newsfeed"
+    val id = "com.wonkijo.rssfeed"
 }
 
 object Versions {
