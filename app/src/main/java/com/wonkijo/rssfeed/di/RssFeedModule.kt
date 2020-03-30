@@ -1,6 +1,6 @@
 package com.wonkijo.rssfeed.di
 
-import com.wonkijo.rssfeed.domain.GetRssFeeds
+import com.wonkijo.rssfeed.domain.use_case.GetRssFeeds
 import com.wonkijo.rssfeed.presentation.model.RssFeedMapper
 import com.wonkijo.rssfeed.presentation.vm.RssFeedViewModelFactory
 import dagger.Module

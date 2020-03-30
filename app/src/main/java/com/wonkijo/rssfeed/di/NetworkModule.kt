@@ -2,6 +2,10 @@ package com.wonkijo.rssfeed.di
 
 import com.wonkijo.rssfeed.BuildConfig
 import com.wonkijo.rssfeed.data.RssFeedApiService
+import com.wonkijo.rssfeed.presentation.NetworkConstants.CONNECT_TIMEOUT
+import com.wonkijo.rssfeed.presentation.NetworkConstants.READ_TIMEOUT
+import com.wonkijo.rssfeed.presentation.NetworkConstants.RSS_URL
+import com.wonkijo.rssfeed.presentation.NetworkConstants.WRITE_TIMEOUT
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -38,9 +42,9 @@ class NetworkModule {
         return OkHttpClient.Builder()
             .apply {
                 addInterceptor(logger)
-                connectTimeout(10, TimeUnit.SECONDS)
-                readTimeout(10, TimeUnit.SECONDS)
-                writeTimeout(10, TimeUnit.SECONDS)
+                connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             }
             .build()
     }
@@ -48,7 +52,7 @@ class NetworkModule {
     @Provides
     fun provideChannelApiService(okHttpClient: OkHttpClient): RssFeedApiService {
         return Retrofit.Builder()
-            .baseUrl("https://news.google.com/")
+            .baseUrl(RSS_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(
                 SimpleXmlConverterFactory.createNonStrict(Persister(AnnotationStrategy()))

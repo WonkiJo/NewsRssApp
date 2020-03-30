@@ -3,7 +3,7 @@ package com.wonkijo.rssfeed.presentation.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.wonkijo.rssfeed.domain.GetRssFeeds
+import com.wonkijo.rssfeed.domain.use_case.GetRssFeeds
 import com.wonkijo.rssfeed.presentation.model.RssFeed
 import com.wonkijo.rssfeed.presentation.model.RssFeedMapper
 import io.reactivex.android.schedulers.AndroidSchedulers

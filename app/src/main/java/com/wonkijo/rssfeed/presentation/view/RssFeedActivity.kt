@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.wonkijo.rssfeed.R
+import com.wonkijo.rssfeed.presentation.ExtraConstants.EXTRA_FEED
 import com.wonkijo.rssfeed.presentation.model.RssFeed
 import com.wonkijo.rssfeed.presentation.vm.RssFeedViewModel
 import com.wonkijo.rssfeed.presentation.vm.RssFeedViewModelFactory
@@ -45,7 +46,7 @@ class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
 
     override fun onClickFeed(feed: RssFeed) {
         startActivity(Intent(this, RssFeedDetailActivity::class.java).apply {
-            putExtra("FEED", feed)
+            putExtra(EXTRA_FEED, feed)
         })
     }
 }

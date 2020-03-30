@@ -15,7 +15,6 @@ class RssFeedEntityMapper @Inject constructor() {
     }
 
     private fun mapFrom(item: RssItem): RssFeedEntity {
-        // todo : cancel thread (job)
         val document = Jsoup.connect(item.link).ignoreHttpErrors(true).get()
 
         val thumbnail = document.select("meta[property=og:image]").firstOrNull()
