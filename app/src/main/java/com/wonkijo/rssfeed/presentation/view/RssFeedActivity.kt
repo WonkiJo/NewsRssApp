@@ -39,9 +39,7 @@ class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
 
     override fun onClickFeed(feed: RssFeed) {
         startActivity(Intent(this, RssFeedDetailActivity::class.java).apply {
-            putExtra("TITLE", feed.title)
-            putExtra("KEYWORDS", feed.keywords)
-            putExtra("PAGE_URL", feed.link)
+            putExtra("FEED", feed)
         })
     }
 }

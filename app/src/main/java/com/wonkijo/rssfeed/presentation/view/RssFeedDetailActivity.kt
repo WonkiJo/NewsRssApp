@@ -7,6 +7,7 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.wonkijo.rssfeed.R
+import com.wonkijo.rssfeed.presentation.model.RssFeed
 import kotlinx.android.synthetic.main.activity_rss_feed_detail.*
 import kotlinx.android.synthetic.main.layout_keywords.*
 
@@ -29,10 +30,9 @@ class RssFeedDetailActivity : AppCompatActivity() {
             }
         }
 
-        intent?.run {
-            tv_title.text = getStringExtra("TITLE")
-
-            getStringArrayExtra("KEYWORDS")?.let { keywords ->
+        intent?.getParcelableExtra<RssFeed>("FEED")?.run {
+            tv_title.text = title
+            keywords?.let { keywords ->
                 val tvKeywords: List<AppCompatTextView> =
                     listOf(tv_keyword_0, tv_keyword_1, tv_keyword_2)
 
@@ -46,7 +46,26 @@ class RssFeedDetailActivity : AppCompatActivity() {
                 }
             }
 
-            webview.loadUrl(getStringExtra("PAGE_URL"))
+            webview.loadUrl(link)
         }
+//        intent?.run {
+//            tv_title.text = getStringExtra("TITLE")
+//
+//            getStringArrayExtra("KEYWORDS")?.let { keywords ->
+//                val tvKeywords: List<AppCompatTextView> =
+//                    listOf(tv_keyword_0, tv_keyword_1, tv_keyword_2)
+//
+//                tvKeywords.forEachIndexed { index, view ->
+//                    if (index < keywords.size) {
+//                        view.visibility = View.VISIBLE
+//                        view.text = keywords[index]
+//                    } else {
+//                        view.visibility = View.GONE
+//                    }
+//                }
+//            }
+//
+//            webview.loadUrl(getStringExtra("PAGE_URL"))
+//        }
     }
 }
