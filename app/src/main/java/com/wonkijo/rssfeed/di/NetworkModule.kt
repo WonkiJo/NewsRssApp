@@ -1,7 +1,7 @@
 package com.wonkijo.rssfeed.di
 
 import com.wonkijo.rssfeed.BuildConfig
-import com.wonkijo.rssfeed.data.RssFeedApiService
+import com.wonkijo.rssfeed.data.RssApiService
 import com.wonkijo.rssfeed.presentation.NetworkConstants.CONNECT_TIMEOUT
 import com.wonkijo.rssfeed.presentation.NetworkConstants.READ_TIMEOUT
 import com.wonkijo.rssfeed.presentation.NetworkConstants.RSS_URL
@@ -13,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.simpleframework.xml.convert.AnnotationStrategy
 import org.simpleframework.xml.core.Persister
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -50,15 +49,14 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideChannelApiService(okHttpClient: OkHttpClient): RssFeedApiService {
+    fun provideChannelApiService(okHttpClient: OkHttpClient): RssApiService {
         return Retrofit.Builder()
             .baseUrl(RSS_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(
                 SimpleXmlConverterFactory.createNonStrict(Persister(AnnotationStrategy()))
             )
             .client(okHttpClient)
             .build()
-            .create(RssFeedApiService::class.java)
+            .create(RssApiService::class.java)
     }
 }

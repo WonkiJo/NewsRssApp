@@ -17,11 +17,15 @@ class RssFeedAdapter(
     private val onClickListener: OnClickFeedListener? = null
 ) : RecyclerView.Adapter<RssFeedAdapter.RssFeedViewHolder>() {
 
-    fun setItems(items: List<RssFeed>? = null) {
-        if (items == null) return
+    fun clearItems() {
         this.items.clear()
-        this.items.addAll(items)
         notifyDataSetChanged()
+    }
+
+    fun setItem(item: RssFeed? = null) {
+        if (item == null) return
+        this.items.add(item)
+        notifyItemInserted(this.items.size)
     }
 
     override fun getItemCount(): Int {

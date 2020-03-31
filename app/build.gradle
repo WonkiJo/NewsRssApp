@@ -62,8 +62,18 @@ dependencies {
     implementation Dependencies.okhttp
     implementation Dependencies.okhttpLogger
     implementation Dependencies.retrofit2
-    implementation Dependencies.adapterRxjava2
     implementation Dependencies.converterXml
 
     implementation Dependencies.jsoup
+
+    implementation Dependencies.coroutineCore
+    implementation Dependencies.coroutineAndroid
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.23.4'
+    testImplementation 'org.mockito:mockito-inline:2.23.4'
+
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'org.mockito:mockito-android:2.15.0'
 }

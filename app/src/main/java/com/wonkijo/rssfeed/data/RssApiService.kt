@@ -5,9 +5,9 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface RssFeedApiService {
+interface RssApiService {
     @GET("rss")
-    fun fetchRss(@Query("hl") hl: String = "ko",
+    suspend fun fetchRss(@Query("hl") hl: String = "ko",
                  @Query("gl") gl: String = "KR",
-                 @Query("ceid") ceid: String = "KR:ko"): Single<Rss>
+                 @Query("ceid") ceid: String = "KR:ko"): Rss
 }

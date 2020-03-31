@@ -29,12 +29,13 @@ class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
         rv_rss_feed.adapter = adapter
 
         layout_swipe_refresh.setOnRefreshListener {
+            adapter.clearItems()
             viewModel.refreshFeeds()
             layout_swipe_refresh.isRefreshing = false
         }
 
-        viewModel.rssFeed.observe(this, Observer {
-            adapter.setItems(it)
+        viewModel.rssFeeds.observe(this, Observer {
+            adapter.setItem(it)
         })
 
         viewModel.isLoading.observe(this, Observer {
