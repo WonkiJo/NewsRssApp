@@ -25,6 +25,7 @@ class RssFeedViewModel(
         get() = _isLoading
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        _isLoading.postValue(false)
         Timber.e(throwable)
     }
 
@@ -34,14 +35,17 @@ class RssFeedViewModel(
 
     fun getRssFeeds() {
         viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+            _isLoading.postValue(true)
             val rssResponse = apiService.fetchRss()
             if (rssResponse.channel?.items.isNullOrEmpty()) {
+                _isLoading.postValue(false)
                 Timber.e("rss response is empty")
             } else {
                 rssResponse.channel?.items?.forEach {
                     val rssFeed = mapper.mapFrom(it)
                     _rssFeeds.postValue(rssFeed)
                 }
+                _isLoading.postValue(false)
             }
         }
     }

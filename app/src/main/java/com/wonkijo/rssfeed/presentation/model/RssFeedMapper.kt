@@ -5,7 +5,7 @@ import org.jsoup.Jsoup
 import javax.inject.Inject
 
 class RssFeedMapper @Inject constructor() {
-    fun mapFrom(item: RssItem): RssFeed {
+    suspend fun mapFrom(item: RssItem): RssFeed {
         val document = Jsoup.connect(item.link).ignoreHttpErrors(true).get()
 
         val thumbnail = document.select("meta[property=og:image]").firstOrNull()
