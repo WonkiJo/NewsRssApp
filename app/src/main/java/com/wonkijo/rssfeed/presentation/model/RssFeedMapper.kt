@@ -7,7 +7,10 @@ import javax.inject.Inject
 
 class RssFeedMapper @Inject constructor() {
     suspend fun mapFrom(item: RssItem): RssFeed {
-        val document = Jsoup.connect(item.link).ignoreHttpErrors(true).get()
+        val document = Jsoup.connect(item.link)
+            .ignoreHttpErrors(true)
+            .validateTLSCertificates(false)
+            .get()
 
         val thumbnail = document.select("meta[property=og:image]").firstOrNull()
             ?.run {
