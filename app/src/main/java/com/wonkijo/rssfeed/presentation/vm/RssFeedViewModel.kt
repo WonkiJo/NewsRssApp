@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wonkijo.rssfeed.data.RssApiService
+import com.wonkijo.rssfeed.data.entities.RssItem
 import com.wonkijo.rssfeed.presentation.model.RssFeed
 import com.wonkijo.rssfeed.presentation.model.RssFeedMapper
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,8 +17,10 @@ class RssFeedViewModel(
     private val apiService: RssApiService,
     private val mapper: RssFeedMapper
 ) : ViewModel() {
-    private val _rssFeeds = MutableLiveData<RssFeed>()
-    val rssFeeds: LiveData<RssFeed>
+    private val rss = mutableListOf<RssFeed>()
+
+    private val _rssFeeds = MutableLiveData<List<RssFeed>>()
+    val rssFeeds: LiveData<List<RssFeed>>
         get() = _rssFeeds
 
     private val _isLoading = MutableLiveData<Boolean>()
@@ -30,6 +33,9 @@ class RssFeedViewModel(
     }
 
     fun refreshFeeds() {
+        if (isLoading.value == true) return
+        rss.clear()
+        _rssFeeds.postValue(rss)
         getRssFeeds()
     }
 
@@ -41,13 +47,18 @@ class RssFeedViewModel(
                 _isLoading.postValue(false)
                 Timber.e("rss response is empty")
             } else {
-                rssResponse.channel?.items?.forEach {
-                    val rssFeed = mapper.mapFrom(it)
-                    _rssFeeds.postValue(rssFeed)
-                }
+                fetchItems(rssResponse.channel?.items ?: listOf())
                 _isLoading.postValue(false)
             }
         }
     }
-}
 
+    private suspend fun fetchItems(items: List<RssItem>) {
+        items.forEach { item ->
+//            Timber.d(item.title)
+            val rssFeed = mapper.mapFrom(item)
+            rss.add(rssFeed)
+            _rssFeeds.postValue(rss)
+        }
+    }
+}

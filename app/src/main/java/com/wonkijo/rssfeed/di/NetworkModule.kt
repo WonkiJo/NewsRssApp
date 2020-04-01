@@ -49,7 +49,7 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideChannelApiService(okHttpClient: OkHttpClient): RssApiService {
+    fun provideRssApiService(okHttpClient: OkHttpClient): RssApiService {
         return Retrofit.Builder()
             .baseUrl(RSS_URL)
             .addConverterFactory(

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wonkijo.rssfeed.R
@@ -11,21 +12,18 @@ import com.wonkijo.rssfeed.presentation.model.RssFeed
 import kotlinx.android.synthetic.main.item_rss_feed.view.*
 import kotlinx.android.synthetic.main.layout_keywords.view.*
 
-// todo : diffUtil.
 class RssFeedAdapter(
     private val items: MutableList<RssFeed>,
     private val onClickListener: OnClickFeedListener? = null
 ) : RecyclerView.Adapter<RssFeedAdapter.RssFeedViewHolder>() {
 
-    fun clearItems() {
+    fun setItems(newItems: List<RssFeed>? = null) {
+        if (newItems == null) return
+        val diffCallback = RssFeedDiffCallback(this.items, newItems)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.items.clear()
-        notifyDataSetChanged()
-    }
-
-    fun setItem(item: RssFeed? = null) {
-        if (item == null) return
-        this.items.add(item)
-        notifyItemInserted(this.items.size)
+        this.items.addAll(newItems)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount(): Int {
@@ -75,6 +73,33 @@ class RssFeedAdapter(
                     onClickListener?.onClickFeed(data)
                 }
             }
+        }
+    }
+
+    interface OnClickFeedListener {
+        fun onClickFeed(feed: RssFeed)
+    }
+
+    class RssFeedDiffCallback(private val oldList: List<RssFeed>,
+                              private val newList: List<RssFeed>) : DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].link === newList.get(newItemPosition).link
+        }
+
+        override fun areContentsTheSame(oldPosition: Int, newPosition: Int): Boolean {
+            val (_, value, name) = oldList[oldPosition]
+            val (_, value1, name1) = newList[newPosition]
+
+            return name == name1 && value == value1
+        }
+
+        override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+            return super.getChangePayload(oldItemPosition, newItemPosition)
         }
     }
 }

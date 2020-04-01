@@ -12,9 +12,10 @@ import com.wonkijo.rssfeed.presentation.vm.RssFeedViewModel
 import com.wonkijo.rssfeed.presentation.vm.RssFeedViewModelFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_rss_feed.*
+import timber.log.Timber
 import javax.inject.Inject
 
-class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
+class RssFeedActivity : DaggerAppCompatActivity(), RssFeedAdapter.OnClickFeedListener {
 
     @Inject
     lateinit var viewModelFactory: RssFeedViewModelFactory
@@ -29,13 +30,12 @@ class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
         rv_rss_feed.adapter = adapter
 
         layout_swipe_refresh.setOnRefreshListener {
-            adapter.clearItems()
             viewModel.refreshFeeds()
             layout_swipe_refresh.isRefreshing = false
         }
 
         viewModel.rssFeeds.observe(this, Observer {
-            adapter.setItem(it)
+            adapter.setItems(it)
         })
 
         viewModel.isLoading.observe(this, Observer {
@@ -50,8 +50,4 @@ class RssFeedActivity : DaggerAppCompatActivity(), OnClickFeedListener {
             putExtra(EXTRA_FEED, feed)
         })
     }
-}
-
-interface OnClickFeedListener {
-    fun onClickFeed(feed: RssFeed)
 }
