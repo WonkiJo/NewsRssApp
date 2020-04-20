@@ -1,5 +1,4 @@
 # NewsRssApp
-MyRealTrip Project
 
 사용한 라이브러리
 ---------------------
