@@ -27,11 +27,6 @@ class SplashActivity : AppCompatActivity() {
             .load(R.drawable.ic_news)
             .apply(RequestOptions.circleCropTransform())
             .into(iv_main)
-
-//        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_news)
-//        val roundDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
-//        roundDrawable.isCircular = true
-//        iv_news.setImageDrawable(roundDrawable)
     }
 
     override fun onStart() {
@@ -52,5 +47,10 @@ class SplashActivity : AppCompatActivity() {
                     }
                 }
             )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        disposable?.dispose()
     }
 }
