@@ -45,33 +45,34 @@ class RssFeedAdapter(
     }
 
     class RssFeedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvKeywords: List<AppCompatTextView> = listOf(
+        private val tvKeywords: List<AppCompatTextView?> = listOf(
             itemView.tv_keyword_0, itemView.tv_keyword_1, itemView.tv_keyword_2
         )
+        private val thumbnailImageView = itemView.iv_thumbnail
+        private val titleTextView = itemView.tv_title
+        private val summaryTextView = itemView.tv_summary
 
         fun bind(data: RssFeed, onClickListener: OnClickFeedListener? = null) {
-            with(itemView) {
-                Glide.with(this)
-                    .load(data.thumbnail)
-                    .into(iv_thumbnail)
+            Glide.with(itemView.context)
+                .load(data.thumbnail)
+                .into(thumbnailImageView)
 
-                tv_title?.text = data.title
-                tv_summary?.text = data.summary
+            titleTextView?.text = data.title
+            summaryTextView?.text = data.summary
 
-                data.keywords?.let {
-                    tvKeywords.forEachIndexed { index, view ->
-                        if (index < data.keywords.size) {
-                            view.visibility = View.VISIBLE
-                            view.text = data.keywords[index]
-                        } else {
-                            view.visibility = View.GONE
-                        }
+            data.keywords?.let {
+                tvKeywords.forEachIndexed { index, view ->
+                    if (index < data.keywords.size) {
+                        view?.visibility = View.VISIBLE
+                        view?.text = data.keywords[index]
+                    } else {
+                        view?.visibility = View.GONE
                     }
                 }
+            }
 
-                setOnClickListener {
-                    onClickListener?.onClickFeed(data)
-                }
+            itemView.setOnClickListener {
+                onClickListener?.onClickFeed(data)
             }
         }
     }

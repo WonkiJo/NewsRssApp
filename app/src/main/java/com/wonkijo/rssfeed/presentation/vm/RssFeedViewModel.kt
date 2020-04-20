@@ -56,9 +56,11 @@ class RssFeedViewModel(
     private suspend fun fetchItems(items: List<RssItem>) {
         items.forEach { item ->
 //            Timber.d(item.title)
-            val rssFeed = mapper.mapFrom(item)
-            rss.add(rssFeed)
-            _rssFeeds.postValue(rss)
+            viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
+                val rssFeed = mapper.mapFrom(item)
+                rss.add(rssFeed)
+                _rssFeeds.postValue(rss)
+            }
         }
     }
 }
